@@ -1,25 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const feedbackForm = document.getElementById("feedbackForm");
-    const responseMessage = document.getElementById("responseMessage");
+document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    let formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        feedback: document.getElementById("message").value
+    };
 
-    feedbackForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-
-        if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
-            responseMessage.style.color = "#ff5555";
-            responseMessage.textContent = "Please fill in all fields.";
-            return;
-        }
-
-        // Simulate sending feedback (In real use case, send to a server)
-        setTimeout(() => {
-            responseMessage.style.color = "#00ffcc";
-            responseMessage.textContent = "Thank you for your feedback, " + name + "!";
-            feedbackForm.reset();
-        }, 1000);
-    });
+    fetch("https://script.google.com/macros/s/AKfycbyxKXrZgUA_5yPNyqsa5_2q3XKIejaII85vw-1N7PAYKcoujyAmbVmciY-HCAD5_PAlgA/exec", { // Replace with the copied URL
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    }).then(() => {
+        document.getElementById("popup").style.display = "block"; // Show success popup
+        document.getElementById("feedbackForm").reset();
+    }).catch(error => console.error("Error:", error));
 });
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
