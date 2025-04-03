@@ -14,24 +14,35 @@ document.addEventListener("DOMContentLoaded", function() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)
         }).then(() => {
-            // Show success message
+            // Get the response message element
             let responseMessage = document.getElementById("responseMessage");
-            if (responseMessage) {
+            if (responseMessage) {  
                 responseMessage.style.display = "block";
                 responseMessage.innerHTML = "Thank you for your feedback!";
-            } else {
-                console.error("Element with ID 'responseMessage' not found");
+            } else {  
+                console.error("Element with ID 'responseMessage' not found");  
             }
 
-            // Show confirmation popup
-            document.getElementById("popup").style.display = "flex";
+            // Get the popup element
+            let popup = document.getElementById("popup");
+            if (popup) {  
+                popup.style.display = "flex";
+            } else {
+                console.error("Element with ID 'popup' not found");
+            }
 
             // Reset form
             document.getElementById("feedbackForm").reset();
         }).catch(error => console.error("Error:", error));
     });
 
-    document.getElementById("closePopup").addEventListener("click", function() {
-        document.getElementById("popup").style.display = "none";
-    });
+    // Check if close button exists before adding event listener
+    let closePopupButton = document.getElementById("closePopup");
+    if (closePopupButton) {
+        closePopupButton.addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+    } else {
+        console.error("Element with ID 'closePopup' not found");
+    }
 });
