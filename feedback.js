@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
             feedback: document.getElementById("message").value
         };
 
-        fetch("https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_URL/exec", { 
+        fetch("https://script.google.com/macros/s/YOUR_NEW_DEPLOYED_SCRIPT_URL/exec", { // Replace with your new URL
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
             console.log("Server Response:", data);
             let responseMessage = document.getElementById("responseMessage");
