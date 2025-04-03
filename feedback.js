@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             feedback: document.getElementById("message").value
         };
 
-        fetch("https://script.google.com/macros/s/AKfycbyxKXrZgUA_5yPNyqsa5_2q3XKIejaII85vw-1N7PAYKcoujyAmbVmciY-HCAD5_PAlgA/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbzDEgFKk6up8E4Fgym6yrQxrVDlrDHTlQmJ9m_h4Kp0zhhGOaHQ5r1yq_MsaCYZh5o23g/exec", {
             method: "POST",
             mode: "no-cors",
             headers: { "Content-Type": "application/json" },
