@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             feedback: document.getElementById("message").value
         };
 
-        fetch("https://script.google.com/macros/s/YOUR_NEW_DEPLOYED_SCRIPT_URL/exec", { // Replace with your new URL
+        fetch("https://script.google.com/macros/s/AKfycbxzWPlpNC1c6BvI4viRiN-_Dwjl2HAbAP_IvyJ0YmRL60ZIsG1s7HQbYlNU2cuxZcym/exec", { // Replace with your new URL
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formData)
