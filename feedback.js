@@ -1,28 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("feedbackForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-        let formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            feedback: document.getElementById("message").value
-        };
+    let form = this;
+    let formData = new FormData(form);
 
-        fetch("https://script.google.com/macros/s/AKfycbxzWPlpNC1c6BvI4viRiN-_Dwjl2HAbAP_IvyJ0YmRL60ZIsG1s7HQbYlNU2cuxZcym/exec", { // Replace with your new URL
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Server Response:", data);
-            let responseMessage = document.getElementById("responseMessage");
-            if (responseMessage) {  
-                responseMessage.style.display = "block";
-                responseMessage.innerHTML = "Thank you for your feedback!";
-            }
-            document.getElementById("feedbackForm").reset();
-        })
-        .catch(error => console.error("Error:", error));
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            alert("Thank you for your feedback!"); 
+            form.reset();
+        } else {
+            alert("There was a problem submitting your feedback. Please try again.");
+        }
+    }).catch(error => {
+        alert("Error: Could not send feedback.");
+        console.error(error);
     });
 });
